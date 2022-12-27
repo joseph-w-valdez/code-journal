@@ -64,3 +64,8 @@ button {
 .ta-end {
   text-align: end;
 }
+
+li {
+  list-style: none;
+  line-height: 25px;
+}
