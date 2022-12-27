@@ -13,3 +13,8 @@ function stringifyEntryValues(object) {
   var entryValuesString = JSON.stringify(data);
   localStorage.setItem('entries-data', entryValuesString);
 }
+
+var previousEntriesData = localStorage.getItem('entries-data');
+if (previousEntriesData) {
+  data = JSON.parse(previousEntriesData);
+}
