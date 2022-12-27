@@ -41,8 +41,13 @@ input {
   margin: 0 0 15px;
 }
 
-input.textarea {
+textarea {
   height: 15vh;
+  width: 100%;
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+  margin: 0 0 15px;
+  resize: none;
 }
 
 button {
