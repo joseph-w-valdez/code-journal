@@ -1,5 +1,5 @@
 
-var $submit = document.querySelector('form');
+var $form = document.querySelector('form');
 function handleSubmit(event) {
   var entry = {};
   event.preventDefault();
@@ -10,12 +10,10 @@ function handleSubmit(event) {
   data.nextEntryId = data.nextEntryId + 1;
   data.entries.unshift(entry);
   $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
-  $title.value = null;
-  $photoUrl.value = null;
-  $notes.value = null;
+  $form.reset();
 }
 
-$submit.addEventListener('submit', handleSubmit);
+$form.addEventListener('submit', handleSubmit);
 
 var $title = document.querySelector('#title');
 var $photoUrl = document.querySelector('#photo');
@@ -23,7 +21,6 @@ var $notes = document.querySelector('#notes');
 
 var $previewImage = document.querySelector('img');
 function handlePreview(event) {
-  event.preventDefault();
   $previewImage.setAttribute('src', $photoUrl.value);
 }
 $photoUrl.addEventListener('input', handlePreview);
