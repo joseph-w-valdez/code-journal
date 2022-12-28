@@ -18,6 +18,14 @@
   width: 100%;
 }
 
+.column-90 {
+  width: 90%;
+}
+
+.column-10 {
+  width: 10%;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -34,5 +42,5 @@
 }
 
 li {
-  margin: 50px 0
+  margin: 50px 0;
 }

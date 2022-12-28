@@ -37,20 +37,33 @@ function renderEntry(entry) {
   var newImgUrl = entry.photoUrl;
   var newColumnFirstHalf = document.createElement('div');
   var newColumnSecondHalf = document.createElement('div');
+  var newTitleRow = document.createElement('div');
+  var newColumn90 = document.createElement('div');
+  var newColumn10 = document.createElement('div');
   var newH2 = document.createElement('H2');
   var newTitle = entry.title;
   var newP = document.createElement('p');
   var newNotes = entry.notes;
+  var newI = document.createElement('i');
 
   newRow.setAttribute('class', 'row');
   newLi.appendChild(newRow);
+  newLi.setAttribute('data-entry-id', entry.entryId);
   newColumnFirstHalf.setAttribute('class', 'column-half');
   newImg.setAttribute('src', newImgUrl);
   newColumnFirstHalf.appendChild(newImg);
   newColumnSecondHalf.setAttribute('class', 'column-half');
   newH2.textContent = newTitle;
+  newI.setAttribute('class', 'fa-pencil fa-solid');
   newP.textContent = newNotes;
-  newColumnSecondHalf.appendChild(newH2);
+  newColumn90.setAttribute('class', 'column-90');
+  newColumn10.setAttribute('class', 'column-10');
+  newTitleRow.appendChild(newColumn90);
+  newTitleRow.appendChild(newColumn10);
+  newColumn90.appendChild(newH2);
+  newColumn10.appendChild(newI);
+  newColumnSecondHalf.appendChild(newTitleRow);
+  newTitleRow.setAttribute('class', 'row');
   newColumnSecondHalf.appendChild(newP);
   newRow.appendChild(newColumnFirstHalf);
   newRow.appendChild(newColumnSecondHalf);
@@ -111,5 +124,4 @@ function handleViewSwap(event) {
   } else if (event.target.matches('.newEntriesButton')) {
     viewSwap($entryForm.getAttribute('data-view'));
   }
-
 }
