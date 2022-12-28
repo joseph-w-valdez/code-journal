@@ -13,7 +13,7 @@ function handleSubmit(event) {
   $form.reset();
   var $singleEntry = renderEntry(entry);
   $ul.prepend($singleEntry);
-  viewSwap($entries);
+  viewSwap('entries');
   toggleNoEntries();
 
 }
@@ -66,6 +66,11 @@ function handleEntryRenders(event) {
     var $singleEntry = renderEntry(data.entries[entry]);
     $ul.appendChild($singleEntry);
   }
+  if (data.view) {
+    var currentView = data.view;
+    viewSwap(currentView);
+  }
+  toggleNoEntries();
 }
 
 var $views = document.querySelectorAll('[data-view]');
@@ -75,7 +80,7 @@ var $entryForm = document.querySelector('[data-view="entry-form"]');
 var $noEntries = document.querySelector('.no-entries');
 
 function toggleNoEntries() {
-  if (data.entries.length === 0) {
+  if (!data.entries.length) {
     $noEntries.classList.remove('hidden');
   } else {
     $noEntries.classList.add('hidden');
@@ -83,13 +88,15 @@ function toggleNoEntries() {
 }
 
 function viewSwap(currentView) {
+  data.view = currentView;
   for (let viewNode = 0; viewNode < $views.length; viewNode++) {
-    if (currentView === $views[viewNode]) {
+    if (currentView === $views[viewNode].getAttribute('data-view')) {
       $views[viewNode].classList.remove('hidden');
     } else {
       $views[viewNode].classList.add('hidden');
     }
   }
+  data.view = currentView;
 }
 
 var entriesView = document.querySelector('.entriesView');
@@ -101,9 +108,9 @@ $newEntry.addEventListener('click', handleViewSwap);
 function handleViewSwap(event) {
   event.preventDefault();
   if (event.target.matches('.entriesView')) {
-    viewSwap($entries);
+    viewSwap($entries.getAttribute('data-view'));
   } else if (event.target.matches('.newEntriesButton')) {
-    viewSwap($entryForm);
+    viewSwap($entryForm.getAttribute('data-view'));
   }
 
 }
