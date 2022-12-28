@@ -67,36 +67,34 @@ var $views = document.querySelectorAll('[data-view]');
 var $entries = document.querySelector('[data-view="entries"]');
 var $entryForm = document.querySelector('[data-view="entry-form"]');
 
-
-function toggleNoEntries () {
+/* function toggleNoEntries() {
   if ($entries.matches('.hidden')) {
-    $entries.classList.remove('hidden')
+    $entries.classList.remove('hidden');
   } else {
-    $entries.classList.add('hidden')
+    $entries.classList.add('hidden');
   }
-}
+} */
 
-/* function viewSwap(currentView) {
-  var $dataViewAttribute = event.target.getAttribute('data-view')
-  for (let viewNode = 0 ; viewNode < $views.length; viewNode++) {
-    if ($dataViewAttribute === $views[viewNode].getAttribute('data-view')) {
-      $views[view].classList.remove('hidden')
-      data.view = $views[viewNode].getAttribute('data-view')
+function viewSwap(currentView) {
+  for (let viewNode = 0; viewNode < $views.length; viewNode++) {
+    if (currentView === $views[viewNode]) {
+      $views[viewNode].classList.remove('hidden');
+      data.view = $views[viewNode].getAttribute('data-view');
     } else {
-      $views[viewNode].classList.add('hidden')
+      $views[viewNode].classList.add('hidden');
     }
   }
 }
 
-var entriesView = document.querySelector('.entriesView')
-entriesView.addEventListener('click', handleViewSwap)
+var entriesView = document.querySelector('.entriesView');
+entriesView.addEventListener('click', handleViewSwap);
 
 function handleViewSwap(event) {
   event.preventDefault();
-  if (!$entries.matches('.hidden')) {
-    return undefined
+  if (event.target.matches('.entriesView')) {
+    viewSwap($entries);
   } else {
-
+    viewSwap($entryForm);
   }
+
 }
- */

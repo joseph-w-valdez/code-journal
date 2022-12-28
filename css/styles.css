@@ -65,13 +65,18 @@ button {
   text-align: end;
 }
 
+ul {
+  width: 100%;
+  padding: 0;
+}
+
 li {
   list-style: none;
   line-height: 25px;
 }
 
 .inline {
-  display:inline
+  display: inline;
 }
 
 .ai-center {
@@ -80,8 +85,7 @@ li {
 
 a {
   text-decoration: none;
-  color: white
-
+  color: white;
 }
 
 a:hover {
