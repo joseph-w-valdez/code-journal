@@ -33,7 +33,9 @@ function renderEntry(entry) {
   var newColumnFirstHalf = document.createElement('div');
   var newColumnSecondHalf = document.createElement('div');
   var newH2 = document.createElement('H2');
+  var newTitle = entry.title;
   var newP = document.createElement('p');
+  var newNotes = entry.notes;
 
   newRow.setAttribute('class', 'row');
   newLi.appendChild(newRow);
@@ -41,6 +43,8 @@ function renderEntry(entry) {
   newImg.setAttribute('src', newImgUrl);
   newColumnFirstHalf.appendChild(newImg);
   newColumnSecondHalf.setAttribute('class', 'column-half');
+  newH2.textContent = newTitle;
+  newP.textContent = newNotes;
   newColumnSecondHalf.appendChild(newH2);
   newColumnSecondHalf.appendChild(newP);
   newRow.appendChild(newColumnFirstHalf);
@@ -49,4 +53,12 @@ function renderEntry(entry) {
   return newLi;
 }
 
-document.addEventListener('DOMContentLoaded', renderEntry);
+document.addEventListener('DOMContentLoaded', handleEntryRenders);
+
+function handleEntryRenders(event) {
+  var $ul = document.querySelector('ul');
+  for (let entry = 0; entry < data.entries.length; entry++) {
+    var $singleEntry = renderEntry(data.entries[entry]);
+    $ul.appendChild($singleEntry);
+  }
+}
