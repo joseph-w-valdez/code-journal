@@ -106,7 +106,6 @@ var $newEntry = document.querySelector('.newEntriesButton');
 $newEntry.addEventListener('click', handleViewSwap);
 
 function handleViewSwap(event) {
-  event.preventDefault();
   if (event.target.matches('.entriesView')) {
     viewSwap($entries.getAttribute('data-view'));
   } else if (event.target.matches('.newEntriesButton')) {
