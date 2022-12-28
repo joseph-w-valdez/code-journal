@@ -4,6 +4,11 @@ body {
   background-color: #f0f0f0;
 }
 
+.container {
+  padding: 0;
+  margin: 0 auto;
+}
+
 header {
   background-color: #562b81;
   color: white;
@@ -50,7 +55,7 @@ textarea {
   resize: none;
 }
 
-button {
+button.save {
   font-family: sans-serif;
   color: white;
   background-color: #562b81;
@@ -61,6 +66,24 @@ button {
   text-align: end;
 }
 
+div.new {
+  font-family: sans-serif;
+  color: white;
+  background-color: #562b81;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 7px 14px;
+  height: 30px;
+  margin: 0;
+  width: 65px;
+  cursor: pointer;
+}
+
+.jc-space-between {
+  justify-content: space-between;
+}
+
 .ta-end {
   text-align: end;
 }
@@ -68,6 +91,7 @@ button {
 ul {
   width: 100%;
   padding: 0;
+  margin 0 auto
 }
 
 li {
@@ -81,6 +105,10 @@ li {
 
 .ai-center {
   align-items: center;
+}
+
+.jc-flex-end {
+  justify-content: flex-end;
 }
 
 a {

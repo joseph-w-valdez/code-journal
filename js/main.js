@@ -79,7 +79,6 @@ function viewSwap(currentView) {
   for (let viewNode = 0; viewNode < $views.length; viewNode++) {
     if (currentView === $views[viewNode]) {
       $views[viewNode].classList.remove('hidden');
-      data.view = $views[viewNode].getAttribute('data-view');
     } else {
       $views[viewNode].classList.add('hidden');
     }
@@ -89,11 +88,14 @@ function viewSwap(currentView) {
 var entriesView = document.querySelector('.entriesView');
 entriesView.addEventListener('click', handleViewSwap);
 
+var $newEntry = document.querySelector('.newEntriesButton');
+$newEntry.addEventListener('click', handleViewSwap);
+
 function handleViewSwap(event) {
   event.preventDefault();
   if (event.target.matches('.entriesView')) {
     viewSwap($entries);
-  } else {
+  } else if (event.target.matches('.newEntriesButton')) {
     viewSwap($entryForm);
   }
 
