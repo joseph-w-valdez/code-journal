@@ -63,12 +63,27 @@ function handleEntryRenders(event) {
   }
 }
 
+var $views = document.querySelectorAll('[data-view]');
 var $entries = document.querySelector('[data-view="entries"]');
+var $entryForm = document.querySelector('[data-view="entry-form"]');
+
 
 function toggleNoEntries () {
   if ($entries.matches('.hidden')) {
     $entries.classList.remove('hidden')
   } else {
     $entries.classList.add('hidden')
+  }
+}
+
+function viewSwap(currentView) {
+  var $dataViewAttribute = event.target.getAttribute('data-view')
+  for (let viewNode = 0 ; viewNode < $views.length; viewNode++) {
+    if ($dataViewAttribute === $views[viewNode].getAttribute('data-view')) {
+      $views[view].classList.remove('hidden')
+      data.view = $views[viewNode].getAttribute('data-view')
+    } else {
+      $views[viewNode].classList.add('hidden')
+    }
   }
 }

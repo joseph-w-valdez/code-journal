@@ -69,3 +69,11 @@ li {
   list-style: none;
   line-height: 25px;
 }
+
+.inline {
+  display:inline
+}
+
+.ai-center {
+  align-items: center;
+}
