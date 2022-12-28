@@ -11,6 +11,11 @@ function handleSubmit(event) {
   data.entries.unshift(entry);
   $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
   $form.reset();
+  var $singleEntry = renderEntry(entry);
+  $ul.prepend($singleEntry);
+  viewSwap($entries);
+  toggleNoEntries();
+
 }
 
 $form.addEventListener('submit', handleSubmit);
@@ -52,11 +57,11 @@ function renderEntry(entry) {
 
   return newLi;
 }
-
+var $ul = document.querySelector('ul');
 document.addEventListener('DOMContentLoaded', handleEntryRenders);
 
 function handleEntryRenders(event) {
-  var $ul = document.querySelector('ul');
+
   for (let entry = 0; entry < data.entries.length; entry++) {
     var $singleEntry = renderEntry(data.entries[entry]);
     $ul.appendChild($singleEntry);
@@ -67,13 +72,15 @@ var $views = document.querySelectorAll('[data-view]');
 var $entries = document.querySelector('[data-view="entries"]');
 var $entryForm = document.querySelector('[data-view="entry-form"]');
 
-/* function toggleNoEntries() {
-  if ($entries.matches('.hidden')) {
-    $entries.classList.remove('hidden');
+var $noEntries = document.querySelector('.no-entries');
+
+function toggleNoEntries() {
+  if (data.entries.length === 0) {
+    $noEntries.classList.remove('hidden');
   } else {
-    $entries.classList.add('hidden');
+    $noEntries.classList.add('hidden');
   }
-} */
+}
 
 function viewSwap(currentView) {
   for (let viewNode = 0; viewNode < $views.length; viewNode++) {
