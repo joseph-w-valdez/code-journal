@@ -62,3 +62,13 @@ function handleEntryRenders(event) {
     $ul.appendChild($singleEntry);
   }
 }
+
+var $entries = document.querySelector('[data-view="entries"]');
+
+function toggleNoEntries () {
+  if ($entries.matches('.hidden')) {
+    $entries.classList.remove('hidden')
+  } else {
+    $entries.classList.add('hidden')
+  }
+}
