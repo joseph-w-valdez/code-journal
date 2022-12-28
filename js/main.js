@@ -76,7 +76,7 @@ function toggleNoEntries () {
   }
 }
 
-function viewSwap(currentView) {
+/* function viewSwap(currentView) {
   var $dataViewAttribute = event.target.getAttribute('data-view')
   for (let viewNode = 0 ; viewNode < $views.length; viewNode++) {
     if ($dataViewAttribute === $views[viewNode].getAttribute('data-view')) {
@@ -87,3 +87,16 @@ function viewSwap(currentView) {
     }
   }
 }
+
+var entriesView = document.querySelector('.entriesView')
+entriesView.addEventListener('click', handleViewSwap)
+
+function handleViewSwap(event) {
+  event.preventDefault();
+  if (!$entries.matches('.hidden')) {
+    return undefined
+  } else {
+
+  }
+}
+ */
