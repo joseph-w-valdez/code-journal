@@ -26,8 +26,10 @@ function handleSubmit(event) {
     originalEntry.replaceWith(editedEntry);
     viewSwap('entries');
     data.editing = null;
+    $deleteButtonText.classList.add('hidden');
     $form.reset();
     $editEntry.textContent = 'New Entry';
+    $deleteButtonText.classList.add('hidden');
     $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
   }
 }
@@ -70,7 +72,7 @@ function renderEntry(entry) {
   newI.setAttribute('class', 'fa-pencil fa-solid');
   newP.textContent = newNotes;
   newColumn90.setAttribute('class', 'column-90');
-  newColumn10.setAttribute('class', 'column-10');
+  newColumn10.setAttribute('class', 'column-10 ta-center');
   newTitleRow.appendChild(newColumn90);
   newTitleRow.appendChild(newColumn10);
   newColumn90.appendChild(newH2);
@@ -156,7 +158,44 @@ function handleEdit(event) {
     $notes.value = data.editing.notes;
     $previewImage.setAttribute('src', $photoUrl.value);
     $editEntry.textContent = 'Edit Entry';
+    $deleteButtonText.classList.remove('hidden');
   }
 }
-
+var $deleteButtonText = document.querySelector('.delete-button-text');
 var $editEntry = document.querySelector('.new-entry');
+var $overlay = document.querySelector('.overlay');
+
+$deleteButtonText.addEventListener('click', handleToggleOverlay);
+function handleToggleOverlay(event) {
+  if ($overlay.matches('.hidden')) {
+    $overlay.classList.remove('hidden');
+  } else {
+    $overlay.classList.add('hidden');
+  }
+
+}
+
+var $cancelButton = document.querySelector('.cancel-button');
+$cancelButton.addEventListener('click', handleToggleOverlay);
+
+var $confirmButton = document.querySelector('.confirm-button');
+$confirmButton.addEventListener('click', handleConfirm);
+
+function handleConfirm(event) {
+  var originalEntryEntryId = '[data-entry-id=' + '"' + data.editing.entryId + '"]';
+  var originalEntry = document.querySelector(originalEntryEntryId);
+  for (let entry = 0; entry < data.entries.length; entry++) {
+    if (data.entries[entry].entryId === originalEntry.getAttribute('data-entry-id') * 1) {
+      data.entries.splice(entry, 1);
+    }
+  }
+  originalEntry.remove();
+  $form.reset();
+  data.editing = null;
+  $editEntry.textContent = 'New Entry';
+  $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
+  $deleteButtonText.classList.add('hidden');
+  toggleNoEntries();
+  handleToggleOverlay();
+  viewSwap('entries');
+}

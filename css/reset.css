@@ -2,10 +2,7 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-}
-
-h2 {
+body,
+ul {
   margin: 0;
 }

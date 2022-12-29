@@ -15,11 +15,26 @@
 </head>
 
 <body>
+  <div class="overlay hidden">
+    <div class="modal">
+      <div class="row jc-space-around ">
+        <div class="column-100 ta-center modal-text-div">
+          <span class="modal-text">Are you sure you want to delete this entry?</span>
+        </div>
+        <div class="column-100">
+          <div class="row jc-space-between modal-buttons">
+            <div class="column-quarter"><div class="cancel-button">CANCEL</div></div>
+            <div class="column-quarter"><div class="confirm-button">CONFIRM</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="container">
       <div class="row ai-center">
         <div class="column-full">
-          <span>Code Journal</span>
+          <span class="header-logo">Code Journal</span>
           <h5 class="inline nav-item"><a class="entriesView">Entries</a></h5>
         </div>
       </div>
@@ -43,16 +58,21 @@
             <label for="notes">Notes</label>
             <textarea id="notes" required></textarea>
           </div>
-          <div class="column-full ta-end"><button type="submit" class="save">SAVE</button></div>
+          <div class="column-full">
+            <div class="row-reverse jc-space-between">
+              <div><button type="submit" class="save">SAVE</button></div>
+              <div class="delete-button-text hidden"><span>Delete Entry</span></div>
+            </div>
+          </div>
         </div>
       </form>
     </div>
     <div data-view="entries" class="hidden">
       <div class="row ai-center">
-        <div class="column-half">
+        <div class="column-90">
           <h1>Entries</h1>
         </div>
-        <div class="column-half">
+        <div class="column-10">
           <div class="row jc-flex-end">
             <div class="new">
               <a class="newEntriesButton">NEW</a>
