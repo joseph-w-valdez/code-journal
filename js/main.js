@@ -166,12 +166,28 @@ var $overlay = document.querySelector('.overlay');
 
 $deleteButtonText.addEventListener('click', handleToggleOverlay);
 function handleToggleOverlay(event) {
-  $overlay.classList.remove('hidden');
+  if ($overlay.matches('.hidden')) {
+    $overlay.classList.remove('hidden');
+  } else {
+    $overlay.classList.add('hidden');
+  }
+
 }
 
 var $cancelButton = document.querySelector('.cancel-button');
-$cancelButton.addEventListener('click', handleCancel);
+$cancelButton.addEventListener('click', handleToggleOverlay);
 
-function handleCancel(event) {
-  $overlay.classList.add('hidden');
+var $confirmButton = document.querySelector('.confirm-button');
+$confirmButton.addEventListener('click', handleConfirm);
+
+function handleConfirm(event) {
+  var originalEntryEntryId = '[data-entry-id=' + '"' + data.editing.entryId + '"]';
+  var originalEntry = document.querySelector(originalEntryEntryId);
+  originalEntry.remove();
+  $form.reset();
+  $editEntry.textContent = 'New Entry';
+  $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
+  toggleNoEntries();
+  handleToggleOverlay();
+  viewSwap('entries');
 }
