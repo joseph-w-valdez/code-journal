@@ -29,6 +29,7 @@ function handleSubmit(event) {
     $deleteButtonText.classList.add('hidden');
     $form.reset();
     $editEntry.textContent = 'New Entry';
+    $deleteButtonText.classList.add('hidden');
     $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
   }
 }
@@ -183,10 +184,17 @@ $confirmButton.addEventListener('click', handleConfirm);
 function handleConfirm(event) {
   var originalEntryEntryId = '[data-entry-id=' + '"' + data.editing.entryId + '"]';
   var originalEntry = document.querySelector(originalEntryEntryId);
+  for (let entry = 0; entry < data.entries.length; entry++) {
+    if (data.entries[entry].entryId === originalEntry.getAttribute('data-entry-id') * 1) {
+      data.entries.splice(entry, 1);
+    }
+  }
   originalEntry.remove();
   $form.reset();
+  data.editing = null;
   $editEntry.textContent = 'New Entry';
   $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
+  $deleteButtonText.classList.add('hidden');
   toggleNoEntries();
   handleToggleOverlay();
   viewSwap('entries');
