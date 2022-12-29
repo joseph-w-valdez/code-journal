@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-  padding: 0;
+  padding: 20px;
   margin: 0 auto;
 }
 
@@ -172,6 +172,7 @@ a:hover {
 
 i {
   cursor: pointer;
+  margin: 20px;
 }
 
 .delete-button-text {

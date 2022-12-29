@@ -71,7 +71,7 @@ function renderEntry(entry) {
   newI.setAttribute('class', 'fa-pencil fa-solid');
   newP.textContent = newNotes;
   newColumn90.setAttribute('class', 'column-90');
-  newColumn10.setAttribute('class', 'column-10');
+  newColumn10.setAttribute('class', 'column-10 ta-center');
   newTitleRow.appendChild(newColumn90);
   newTitleRow.appendChild(newColumn10);
   newColumn90.appendChild(newH2);
