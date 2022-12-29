@@ -127,3 +127,7 @@ a:hover {
 .fa-pencil {
   color: #562b81;
 }
+
+i {
+  cursor: pointer;
+}

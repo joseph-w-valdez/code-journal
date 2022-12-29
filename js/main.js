@@ -125,3 +125,22 @@ function handleViewSwap(event) {
     viewSwap($entryForm.getAttribute('data-view'));
   }
 }
+
+$ul.addEventListener('click', handleEdit);
+function handleEdit(event) {
+  if (event.target.matches('.fa-pencil')) {
+    viewSwap('entry-form');
+    for (let entry = 0; entry < data.entries.length; entry++) {
+      if (data.entries[entry].entryId === event.target.closest('li').getAttribute('data-entry-id') * 1) {
+        data.editing = data.entries[entry];
+      }
+    }
+    $title.value = data.editing.title;
+    $photoUrl.value = data.editing.photoUrl;
+    $notes.value = data.editing.notes;
+    $previewImage.setAttribute('src', $photoUrl.value);
+    $editEntry.textContent = 'Edit Entry';
+  }
+}
+
+var $editEntry = document.querySelector('.new-entry');
