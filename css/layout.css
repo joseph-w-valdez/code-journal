@@ -24,14 +24,14 @@
   width: 100%;
 }
 
-.column-remainder {
-  width: auto;
-  min-width: 50%;
-  max-width: 100%;
-}
-
 .column-quarter {
   width: 25%;
+}
+
+.column-100 {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .column-90 {
@@ -54,6 +54,10 @@
 
   .column-half {
     width: 50%;
+  }
+
+  .overlay {
+    align-items: center;
   }
 }
 
