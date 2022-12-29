@@ -16,6 +16,12 @@ function handleSubmit(event) {
     $ul.prepend($singleEntry);
     viewSwap('entries');
     toggleNoEntries();
+  } else {
+    data.entries.entryId = data.editing.entryId;
+    $singleEntry = renderEntry(entry);
+    $ul.prepend($singleEntry);
+    viewSwap('entries');
+    toggleNoEntries();
   }
 }
 
@@ -126,6 +132,8 @@ function handleViewSwap(event) {
     viewSwap($entryForm.getAttribute('data-view'));
   }
 }
+
+/* var editIndex = null; */
 
 $ul.addEventListener('click', handleEdit);
 function handleEdit(event) {
