@@ -17,11 +17,12 @@ function handleSubmit(event) {
     viewSwap('entries');
     toggleNoEntries();
   } else {
-    data.entries.entryId = data.editing.entryId;
-    $singleEntry = renderEntry(entry);
-    $ul.prepend($singleEntry);
-    viewSwap('entries');
-    toggleNoEntries();
+    data.editing.title = $title.value
+    data.editing.photoUrl = $photoUrl.value
+    data.editing.notes = $notes.value
+    renderEntry(data.editing)
+    newLi.replaceWith()
+
   }
 }
 
@@ -133,7 +134,7 @@ function handleViewSwap(event) {
   }
 }
 
-/* var editIndex = null; */
+var editIndex = null;
 
 $ul.addEventListener('click', handleEdit);
 function handleEdit(event) {
@@ -142,6 +143,7 @@ function handleEdit(event) {
     for (let entry = 0; entry < data.entries.length; entry++) {
       if (data.entries[entry].entryId === event.target.closest('li').getAttribute('data-entry-id') * 1) {
         data.editing = data.entries[entry];
+        editIndex = entry
       }
     }
     $title.value = data.editing.title;
