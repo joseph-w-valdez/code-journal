@@ -164,7 +164,14 @@ var $deleteButtonText = document.querySelector('.delete-button-text');
 var $editEntry = document.querySelector('.new-entry');
 var $overlay = document.querySelector('.overlay');
 
-$deleteButtonText.addEventListener('click', handleDelete);
-function handleDelete(event) {
+$deleteButtonText.addEventListener('click', handleToggleOverlay);
+function handleToggleOverlay(event) {
   $overlay.classList.remove('hidden');
+}
+
+var $cancelButton = document.querySelector('.cancel-button');
+$cancelButton.addEventListener('click', handleCancel);
+
+function handleCancel(event) {
+  $overlay.classList.add('hidden');
 }
