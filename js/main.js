@@ -3,7 +3,7 @@ var $form = document.querySelector('form');
 function handleSubmit(event) {
   var entry = {};
   event.preventDefault();
-  if (!data.editing) {
+  if (data.editing === null) {
     entry.title = $title.value;
     entry.photoUrl = $photoUrl.value;
     entry.notes = $notes.value;
@@ -17,15 +17,20 @@ function handleSubmit(event) {
     viewSwap('entries');
     toggleNoEntries();
   } else {
-    data.editing.title = $title.value
-    data.editing.photoUrl = $photoUrl.value
-    data.editing.notes = $notes.value
-    renderEntry(data.editing)
-    newLi.replaceWith()
-
+    data.editing.title = $title.value;
+    data.editing.photoUrl = $photoUrl.value;
+    data.editing.notes = $notes.value;
+    var editedEntry = renderEntry(data.editing);
+    var originalEntryEntryId = '[data-entry-id=' + '"' + data.editing.entryId + '"]';
+    var originalEntry = document.querySelector(originalEntryEntryId);
+    originalEntry.replaceWith(editedEntry);
+    viewSwap('entries');
+    data.editing = null;
+    $form.reset();
+    $editEntry.textContent = 'New Entry';
+    $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
   }
 }
-
 $form.addEventListener('submit', handleSubmit);
 
 var $title = document.querySelector('#title');
@@ -82,7 +87,7 @@ var $ul = document.querySelector('ul');
 document.addEventListener('DOMContentLoaded', handleEntryRenders);
 
 function handleEntryRenders(event) {
-
+  data.editing = null;
   for (let entry = 0; entry < data.entries.length; entry++) {
     var $singleEntry = renderEntry(data.entries[entry]);
     $ul.appendChild($singleEntry);
@@ -117,6 +122,9 @@ function viewSwap(currentView) {
       $views[viewNode].classList.add('hidden');
     }
   }
+  $form.reset();
+  $editEntry.textContent = 'New Entry';
+  $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
   data.view = currentView;
 }
 
@@ -134,8 +142,6 @@ function handleViewSwap(event) {
   }
 }
 
-var editIndex = null;
-
 $ul.addEventListener('click', handleEdit);
 function handleEdit(event) {
   if (event.target.matches('.fa-pencil')) {
@@ -143,7 +149,6 @@ function handleEdit(event) {
     for (let entry = 0; entry < data.entries.length; entry++) {
       if (data.entries[entry].entryId === event.target.closest('li').getAttribute('data-entry-id') * 1) {
         data.editing = data.entries[entry];
-        editIndex = entry
       }
     }
     $title.value = data.editing.title;
