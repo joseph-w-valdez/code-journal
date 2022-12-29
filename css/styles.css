@@ -131,3 +131,9 @@ a:hover {
 i {
   cursor: pointer;
 }
+
+.delete-button-text {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}

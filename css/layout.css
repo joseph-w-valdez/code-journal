@@ -13,9 +13,25 @@
   flex-wrap: wrap;
 }
 
+.row-reverse {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
 .column-full,
 .column-half {
   width: 100%;
+}
+
+.column-remainder {
+  width: auto;
+  min-width: 50%;
+  max-width: 100%;
+}
+
+.column-quarter {
+  width: 25%;
 }
 
 .column-90 {

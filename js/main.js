@@ -26,6 +26,7 @@ function handleSubmit(event) {
     originalEntry.replaceWith(editedEntry);
     viewSwap('entries');
     data.editing = null;
+    $deleteButtonText.classList.add('hidden');
     $form.reset();
     $editEntry.textContent = 'New Entry';
     $previewImage.setAttribute('src', './images/placeholder-image-square.jpg');
@@ -156,7 +157,8 @@ function handleEdit(event) {
     $notes.value = data.editing.notes;
     $previewImage.setAttribute('src', $photoUrl.value);
     $editEntry.textContent = 'Edit Entry';
+    $deleteButtonText.classList.remove('hidden');
   }
 }
-
+var $deleteButtonText = document.querySelector('.delete-button-text');
 var $editEntry = document.querySelector('.new-entry');
